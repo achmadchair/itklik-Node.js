@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Home - ITKLIK</title>
+
+    <!-- Favicon SEO Friendly -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://itklik.com/img/logi.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://itklik.com/img/logi.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://itklik.com/img/logi.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://itklik.com/img/logi.png">
+    <link rel="shortcut icon" href="https://itklik.com/favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+</head>
+
+<body style="padding-top: 90px;">
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light fixed-top"
+            style="background-color: transparent !important; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+
+            <div class="container-fluid">
+
+                <!-- RESPONSIVE BUTTON (Left on mobile) -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- LOGO (Centered on mobile via CSS) -->
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="/img/itkl.png" alt="ITKLIK" style="height:50px;" />
+                </a>
+
+                <!-- MENU -->
+                <div class="navbar-collapse collapse" id="mainNavbar">
+
+                    <!-- MENU KIRI -->
+                    <ul class="navbar-nav me-auto">
+                        <!-- CMS Dashboard appears when admin logged in -->
+                        <li class="nav-item admin-only" style="display: none;">
+                            <a class="nav-link text-dark fw-bold" href="#cms" onclick="navigateTo('#cms')">CMS
+                                Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#home" onclick="navigateTo('#home')">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#about" onclick="navigateTo('#about')">Profile</a>
+                        </li>
+
+                        <!-- SERVICE DROPDOWN -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="serviceDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Service
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="serviceDropdown">
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="showServiceAddress('HARCO')">HARCO</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="showServiceAddress('KEIAI')">KEIAI</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="showServiceAddress('CIKARANG')">CIKARANG</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- PRODUCT DROPDOWN -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="productDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Product
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="productDropdown">
+                                <li><a class="dropdown-item" href="#products" onclick="navigateTo('#products')">All
+                                        Products</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#printer"
+                                        onclick="navigateTo('#printer')">Printer</a></li>
+                                <li><a class="dropdown-item" href="#ink" onclick="navigateTo('#ink')">Ink</a></li>
+                                <li><a class="dropdown-item" href="#projector"
+                                        onclick="navigateTo('#projector')">Projector</a></li>
+                                <li><a class="dropdown-item" href="#scanner"
+                                        onclick="navigateTo('#scanner')">Scanner</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="javascript:void(0)" onclick="showContact()">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="navbar-right-side d-flex align-items-center">
+                    <!-- Marketplace Icons (Visible on desktop) -->
+                    <div class="d-none d-md-flex align-items-center me-2">
+                        <a class="nav-link px-2" href="https://id.shp.ee/5QdFanZt" target="_blank">
+                            <img src="/img/Shopee.jpg" style="height:35px;" class="rounded" />
+                        </a>
+                        <a class="nav-link px-2" href="https://tk.tokopedia.com/ZS9SjHVUk/" target="_blank">
+                            <img src="/img/tokped.jpg" style="height:35px;" class="rounded" />
+                        </a>
+                    </div>
+
+                    <!-- HAMBURGER BUTTON (Always on the far right) -->
+                    <button class="btn btn-link nav-link p-0" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasMenu">
+                        <i class="bi bi-list fs-1 text-dark"></i>
+                    </button>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- OFFCANVAS MENU -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold" id="offcanvasMenuLabel">ITKLIK MENU</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="list-group list-group-flush">
+                <a href="#home" onclick="navigateTo('#home')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-house-door me-3"></i> Home
+                </a>
+                <a href="#about" onclick="navigateTo('#about')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-person-badge me-3"></i> Profile
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <div class="px-3 py-2 small text-muted text-uppercase">Service</div>
+                <a href="javascript:void(0)" onclick="showServiceAddress('HARCO')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-geo-alt me-3"></i> HARCO
+                </a>
+                <a href="javascript:void(0)" onclick="showServiceAddress('KEIAI')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-geo-alt me-3"></i> KEIAI
+                </a>
+                <a href="javascript:void(0)" onclick="showServiceAddress('CIKARANG')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-geo-alt me-3"></i> CIKARANG
+                </a>
+
+                <a href="javascript:void(0)" onclick="showContact()"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-chat-dots me-3"></i> Contact
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <div class="px-3 py-2 small text-muted text-uppercase">Products</div>
+
+                <a href="#products" onclick="navigateTo('#products')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-grid me-3"></i> All Products
+                </a>
+                <a href="#printer" onclick="navigateTo('#printer')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-printer me-3"></i> Printer
+                </a>
+                <a href="#ink" onclick="navigateTo('#ink')" class="list-group-item list-group-item-action py-3 border-0"
+                    data-bs-dismiss="offcanvas">
+                    <i class="bi bi-droplet me-3"></i> Ink
+                </a>
+                <a href="#projector" onclick="navigateTo('#projector')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-projector me-3"></i> Projector
+                </a>
+                <a href="#scanner" onclick="navigateTo('#scanner')"
+                    class="list-group-item list-group-item-action py-3 border-0" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-scanner me-3"></i> Scanner
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- CMS (Admin Only) -->
+                <a href="#cms" class="list-group-item list-group-item-action py-3 border-0 admin-only"
+                    style="display: none;" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-speedometer2 me-3"></i> CMS Dashboard
+                </a>
+
+                <!-- LOGIN (Guest Only) -->
+                <a href="javascript:void(0)" id="loginBtnSidebar"
+                    class="list-group-item list-group-item-action py-3 border-0 guest-only" data-bs-toggle="modal"
+                    data-bs-target="#loginModal" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-box-arrow-in-right me-3"></i> Login / Register
+                </a>
+
+                <!-- LOGOUT (Auth Only) -->
+                <a href="javascript:void(0)" id="logoutBtnSidebar"
+                    class="list-group-item list-group-item-action py-3 border-0 auth-only text-danger"
+                    style="display: none;" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-box-arrow-left me-3"></i> Logout
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <div class="px-3 py-2 small text-muted text-uppercase">Marketplace</div>
+                <div class="d-flex justify-content-around p-3">
+                    <a href="https://id.shp.ee/5QdFanZt" target="_blank" class="mx-2">
+                        <img src="/img/Shopee.jpg" style="height:45px;" class="rounded shadow-sm" />
+                    </a>
+                    <a href="https://tk.tokopedia.com/ZS9SjHVUk/" target="_blank" class="mx-2">
+                        <img src="/img/tokped.jpg" style="height:45px;" class="rounded shadow-sm" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="container-fluid p-0">
+        <main role="main" class="pb-3">
+
+            <div id="home-view">
+                <!-- HERO SECTION -->
+                <div class="layar-section position-relative d-flex align-items-center justify-content-center text-white"
+                    style="background-image: url('/img/home.jpg');">
+                    <!-- Overlay gelap -->
+                    <div class="position-absolute w-100 h-100 bg-dark start-0 top-0 opacity-50"></div>
+
+                    <!-- Konten Slider 
+                    <div class="hero-content text-center" style="z-index: 2;">
+                        <h1 class="display-3 fw-bold">ITKLIK INDONESIA</h1>
+                        <p class="fs-4">Solusi Terbaik Kebutuhan Perangkat Kantor Anda</p>
+                    </div>-->
+                </div>
+
+                <!-- BLUE SECTION -->
+                <section class="hero-section">
+                    <div class="container">
+
+                        <div class="row align-items-start">
+
+                            <!-- LEFT -->
+                            <div class="col-md-6 hero-left">
+                                <h2 class="display-6 fw-bold text-uppercase mb-0">Welcome</h2>
+                                <h1 class="display-4 fw-bold text-white mb-1">ITKLIK</h1>
+                                <h3 class="fw-bold text-warning">Epson Authorized Partner</h3>
+                            </div>
+                            <!-- RIGHT -->
+                            <div class="col-md-6 hero-right">
+                                <p class="fs-5">
+                                    Penyedia resmi produk dan layanan purna jual <br />
+                                    Epson terlengkap dan terpercaya.<br />
+                                    ---------------- <br />
+                                    Authorized Solution for You!
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="mega-sale-section home-body-bg">
+                    <div class="container">
+                        <div class="row align-items-center">
+
+                            <!-- LEFT: IMAGE CAROUSEL -->
+                            <div class="col-md-6">
+                                <div id="productCarousel" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel" data-bs-interval="3000">
+                                    <div class="carousel-inner bg-white" id="dynamic-product-carousel">
+                                        <!-- Dynamic items will be injected here by main.js -->
+                                        <div class="carousel-item active">
+                                            <div class="d-flex align-items-center justify-content-center" style="height: 400px;">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT: TEXT -->
+                            <div class="col-md-6 mega-sale-text">
+                                <h2 class="display-4 fw-bold text-primary">Mega Sale!</h2>
+                                <p class="fs-5">
+                                    Dapatkan berbagai macam printer dengan harga terbaik hanya di ITKLIK Indonesia.
+                                    Order melalui marketplace kami agar mendapatkan harga terbaik!
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features-section home-body-bg" id="services">
+                    <div class="container">
+                        <h2 class="features-title text-center">Hasil Terbaik</h2>
+                        <div class="row align-items-start text-center">
+
+                            <!-- ORDER -->
+                            <div class="col-md-4 feature-item">
+                                <img src="/img/order.jpeg" alt="Order" class="feature-icon">
+                                <h3>Order</h3>
+                                <p>Semua pembelian dapat dilakukan di Marketplace kami</p>
+                            </div>
+
+                            <!-- PENGIRIMAN -->
+                            <div class="col-md-4 feature-item">
+                                <img src="/img/kirim.png" alt="Pengiriman" class="feature-icon">
+                                <h3>Pengiriman</h3>
+                                <p>Pengiriman cepat dibawah 2 (dua) hari</p>
+                            </div>
+
+                            <!-- GARANSI -->
+                            <div class="col-md-4 feature-item">
+                                <img src="/img/garansi.jpeg" alt="Garansi" class="feature-icon">
+                                <h3>Garansi</h3>
+                                <p>Authorized Epson Service Center</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section class="testimonials-section home-body-bg">
+                    <div class="container">
+
+                        <!-- SECTION TITLE -->
+                        <h2 class="testimonials-title text-center">Testimonials</h2>
+
+                        <div class="row text-center" id="testimonials-grid">
+                            <!-- Testimonials will be injected here -->
+                        </div>
+
+                        <!-- Submit Testimonial (Logged In Only) -->
+                        <div class="row mt-5 auth-only" style="display: none;">
+                            <div class="col-md-6 offset-md-3">
+                                <div class="card shadow-sm border-primary">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-center mb-3 text-primary">Kirim Testimoni Anda</h4>
+                                        <form id="form-testimonial">
+                                            <div class="mb-3">
+                                                <label class="form-label">Pesan Testimoni</label>
+                                                <textarea class="form-control" id="testimonial-text" rows="3"
+                                                    placeholder="Tulis testimoni Anda di sini..." required></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary w-100">Kirim Testimoni</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="location-section py-5 mt-4 home-body-bg" id="contact">
+                        <div class="container">
+                            <h2 class="text-center mb-5 fw-bold">Lokasi Toko Kami</h2>
+                            <div class="row align-items-center bg-white shadow-sm rounded p-4 border">
+                                <div class="col-md-5 mb-4 mb-md-0">
+                                    <h4 class="fw-bold mb-3">ITKLIK INDONESIA</h4>
+                                    <p class="fs-6 text-muted mb-4" style="line-height: 1.8;">
+                                        <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+                                        HARCO MANGGA DUA BLOK G NO. 3 A <br>
+                                        JL MANGGA DUA RAYA RT. 017 RW. 011 <br>
+                                        MANGGA DUA SELATAN, SAWAH BESAR <br>
+                                        KOTA ADM. JAKARTA PUSAT <br>
+                                        DKI JAKARTA 10730
+                                    </p>
+                                    <a href="https://maps.google.com/?q=Harco+Mangga+Dua+Jakarta" target="_blank"
+                                        class="btn btn-outline-primary px-4 py-2 fw-bold">
+                                        Buka di Google Maps
+                                    </a>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="ratio ratio-16x9 shadow-sm rounded overflow-hidden">
+                                        <iframe
+                                            src="https://maps.google.com/maps?q=Harco+Mangga+Dua+Blok+G+Jakarta+Pusat&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                            frameborder="0" style="border:0;" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+            </div> <!-- End of home-view -->
+
+            <!-- PRODUCTS VIEW -->
+            <div id="products-view" style="display:none;" class="container mt-4 pt-4">
+                <h2 id="products-title">Produk</h2>
+                <div class="row" id="products-grid">
+                    <!-- Products will be injected here by JS -->
+                </div>
+            </div>
+
+            <!-- CMS DASHBOARD VIEW -->
+            <div id="cms-view" style="display:none;" class="container mt-4 pt-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>CMS Dashboard - Kelola Produk</h2>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                        + Tambah Produk
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Gambar</th>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cms-products-table">
+                            <!-- CMS Products will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- DETAIL PRODUCT VIEW -->
+            <div id="detail-view" style="display:none;" class="container mt-4 pt-4">
+                <button class="btn btn-outline-secondary mb-4" onclick="window.history.back()"> Kembali</button>
+                <div id="detail-content">
+                    <!-- Detail product will be injected here -->
+                </div>
+            </div>
+            <!-- EXPIRED VIEW -->
+            <div id="expired-view" style="display:none;" class="container mt-5 pt-5 text-center">
+                <div class="card shadow border-danger p-5">
+                    <h1 class="text-danger fw-bold mb-4">LISENSI BERAKHIR</h1>
+                    <p class="fs-5 mb-4">
+                        Masa berlaku aplikasi ini telah habis pada <span id="expiry-date-text"
+                            class="fw-bold"></span>.<br>
+                        Silakan hubungi pengembang untuk memperbarui lisensi agar dapat terus menggunakan layanan kami.
+                    </p>
+                    <div class="mt-4">
+                        <a href="https://wa.me/6282264000990?text=Halo,%20lisensi%20web%20ITKLIK%20saya%20sudah%20berakhir.%20Saya%20ingin%20memperbarui."
+                            target="_blank" class="btn btn-danger btn-lg px-5">
+                            Hubungi Pengembang (Update Lisensi)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT VIEW -->
+            <div id="about-view" style="display:none;" class="about-view-container">
+                <!-- About Hero -->
+                <section class="about-hero-section text-white d-flex align-items-center justify-content-center">
+                    <div class="container text-center">
+                        <h1 class="display-3 fw-bold mb-3">Epson Authorized Partner</h1>
+                        <p class="lead fs-4">Authorized Printer & Service Center Solution</p>
+                    </div>
+                </section>
+
+                <!-- Company Profile -->
+                <section class="py-5 about-body-bg">
+                    <div class="container py-4">
+                        <div class="row align-items-center mb-5">
+                            <div class="col-lg-6 mb-4 mb-lg-0">
+                                <h2 class="display-5 fw-bold mb-4 text-primary">Company Profile</h2>
+                                <p class="fs-5 text-muted mb-4">
+                                    ITKLIK INDONESIA adalah <strong>Epson Authorized Printer Partner</strong> dan
+                                    <strong>Authorized Service Center</strong> terkemuka yang berdedikasi
+                                    untuk memberikan produk Epson berkualitas tinggi dan layanan purna jual yang
+                                    profesional.
+                                    Berlokasi di Harco Mangga Dua, kami siap melayani kebutuhan printer dan service
+                                    center Anda.
+                                </p>
+                                <div class="row g-4 mt-2">
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon-small bg-primary-soft me-3">
+                                                <i class="bi bi-patch-check-fill text-primary fs-3"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold mb-0">Epson Authorized</h5>
+                                                <p class="small text-muted mb-0">Authorized Printer Partner</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon-small bg-success-soft me-3">
+                                                <i class="bi bi-award-fill text-success fs-3"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold mb-0">Service Center</h5>
+                                                <p class="small text-muted mb-0">Epson Authorized Service</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="position-relative">
+                                    <img src="/img/profile.jpeg" alt="Our Office" class="img-fluid rounded-4 shadow-lg">
+                                    <div
+                                        class="experience-badge bg-primary text-white p-4 rounded-4 shadow position-absolute">
+                                        <span class="d-block display-5 fw-bold">10+</span>
+                                        <span class="text-uppercase small">Years of Excellence</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 mt-5">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm p-4 rounded-4 text-center hover-up">
+                                    <div class="mb-3 text-primary">
+                                        <i class="bi bi-eye-fill fs-1"></i>
+                                    </div>
+                                    <h3 class="fw-bold mb-3">Visi</h3>
+                                    <p class="text-muted">Menjadi mitra terpercaya dan pilihan utama bagi setiap
+                                        instansi dalam memenuhi kebutuhan solusi teknologi perkantoran di Indonesia.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm p-4 rounded-4 text-center hover-up">
+                                    <div class="mb-3 text-primary">
+                                        <i class="bi bi-bullseye fs-1"></i>
+                                    </div>
+                                    <h3 class="fw-bold mb-3">Misi</h3>
+                                    <p class="text-muted small">
+                                        • Menyediakan produk Epson berkualitas dengan harga kompetitif.<br>
+                                        • Memberikan edukasi dan solusi tepat guna.<br>
+                                        • Menjamin layanan purna jual melalui Authorized Service Center.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm p-4 rounded-4 text-center hover-up">
+                                    <div class="mb-3 text-primary">
+                                        <i class="bi bi-heart-fill fs-1"></i>
+                                    </div>
+                                    <h3 class="fw-bold mb-3">Nilai Utama</h3>
+                                    <p class="text-muted">Integritas, Inovasi, dan Kepuasan Pelanggan adalah fondasi
+                                        dari setiap langkah yang kami ambil di ITKLIK.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+        </main>
+
+        <!-- Modals -->
+
+        <!-- Login/Register Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login / Register</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs" id="authTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                                    data-bs-target="#login-pane" type="button" role="tab">Login</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="register-tab" data-bs-toggle="tab"
+                                    data-bs-target="#register-pane" type="button" role="tab">Register</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3" id="authTabsContent">
+                            <!-- Login Form -->
+                            <div class="tab-pane fade show active" id="login-pane" role="tabpanel" tabindex="0">
+                                <form id="form-login">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="login-username" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="login-password" required>
+                                    </div>
+                                    <div id="login-error" class="text-danger mb-3 d-none"></div>
+                                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                                </form>
+                            </div>
+                            <!-- Register Form -->
+                            <div class="tab-pane fade" id="register-pane" role="tabpanel" tabindex="0">
+                                <form id="form-register">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="register-username" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="register-password" required>
+                                    </div>
+                                    <div class="mb-3" style="display: none;">
+                                        <label class="form-label">Role (Untuk Testing)</label>
+                                        <select class="form-select" id="register-role">
+                                            <option value="guest" selected>Guest</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="superadmin">Superadmin</option>
+                                        </select>
+                                    </div>
+                                    <div id="register-error" class="text-danger mb-3 d-none"></div>
+                                    <button type="submit" class="btn btn-success w-100">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add/Edit Product Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="form-product">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="productModalLabel">Form Produk</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="product-id">
+                            <div class="mb-3">
+                                <label class="form-label">Nama Produk</label>
+                                <input type="text" class="form-control" id="product-name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Kategori</label>
+                                <select class="form-select" id="product-category" required>
+                                    <option value="Printer">Printer</option>
+                                    <option value="Ink">Ink</option>
+                                    <option value="Projector">Projector</option>
+                                    <option value="Scanner">Scanner</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Harga (Rp)</label>
+                                <input type="number" class="form-control" id="product-price" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">URL Gambar</label>
+                                <input type="text" class="form-control" id="product-image"
+                                    placeholder="/img/products/..." required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Deskripsi Produk</label>
+                                <textarea class="form-control" id="product-description" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+
+                <!-- SHOP -->
+                <div class="col-md-3 footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Printer</a></li>
+                        <li><a href="#">Ink</a></li>
+                        <li><a href="#">Projector</a></li>
+                        <li><a href="#">Scanner</a></li>
+                    </ul>
+                </div>
+
+                <!-- INFO -->
+                <div class="col-md-3 footer-column">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- SUPPORT -->
+                <div class="col-md-3 footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="col-md-3 footer-column">
+                    <h4>Contact</h4>
+                    <p>
+                        Customer Service:<br>
+                        (021) 572 4350<br>
+                        <a href="mailto:sales_tokoepson@itklik.com">sales_tokoepson@itklik.com</a>
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/1ETauCZjDP/"><img src="/img/facebook.jpeg"
+                                alt="Facebook"></a>
+                        <a href="https://www.instagram.com/itklik?igsh=ZDh3cXVqYmVvamJs"><img src="/img/ig.jpeg"
+                                alt="Instagram"></a>
+                        <a href="#"><img src="/img/tw.jpeg" alt="Twitter"></a>
+                        <a href="https://wa.me/6281354842048" target="_blank"><img src="/img/wa.jpeg"
+                                alt="whatsapp"></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <footer class="border-top footer text-muted mt-5 bg-white">
+        <div class="container py-3">
+            &copy; 2026 - <a href="https://wa.me/6282264000990" target="_blank"
+                class="text-decoration-none text-muted fw-bold">ITKLIK <i class="bi bi-whatsapp text-success"></i></a> -
+            <a href="#">Privacy</a>
+        </div>
+    </footer>
+
+
+    <!-- Service Address Modal -->
+    <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel">Alamat Service Center</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <h4 id="service-branch-name" class="fw-bold text-primary mb-3"></h4>
+                            <p id="service-address-text" class="text-muted mb-4" style="line-height: 1.6;"></p>
+                            <div class="d-grid">
+                                <a href="#" id="service-google-maps-link" target="_blank"
+                                    class="btn btn-outline-primary">
+                                    <i class="bi bi-geo-alt-fill me-2"></i> Buka di Google Maps
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="ratio ratio-4x3 shadow-sm rounded-4 overflow-hidden border">
+                                <iframe id="service-map-iframe" src="" frameborder="0" style="border:0;"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold" id="contactModalLabel">Hubungi ITKLIK</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-4 text-center">Silakan pilih metode komunikasi yang Anda inginkan:</p>
+
+                    <div class="list-group list-group-flush border-0">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/6281354842048" target="_blank" class="contact-item">
+                            <div class="contact-icon bg-whatsapp-soft">
+                                <i class="bi bi-whatsapp"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-0">WhatsApp</h6>
+                                <p class="small text-muted mb-0">Chat langsung (Fast Response)</p>
+                            </div>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+
+                        <!-- Phone -->
+                        <a href="tel:+62215724350" class="contact-item">
+                            <div class="contact-icon bg-phone-soft">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-0">Telepon</h6>
+                                <p class="small text-muted mb-0">(021) 572 4350</p>
+                            </div>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:sales_tokoepson@itklik.com" class="contact-item">
+                            <div class="contact-icon bg-email-soft">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-0">Email</h6>
+                                <p class="small text-muted mb-0">sales_tokoepson@itklik.com</p>
+                            </div>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/itklik?igsh=ZDh3cXVqYmVvamJs" target="_blank"
+                            class="contact-item">
+                            <div class="contact-icon bg-instagram-soft">
+                                <i class="bi bi-instagram"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-0">Instagram</h6>
+                                <p class="small text-muted mb-0">@itklik</p>
+                            </div>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/1ETauCZjDP/" target="_blank" class="contact-item">
+                            <div class="contact-icon bg-facebook-soft">
+                                <i class="bi bi-facebook"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-0">Facebook</h6>
+                                <p class="small text-muted mb-0">ITKLIK Indonesia</p>
+                            </div>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+
+                        <!-- Twitter -->
+                        <a href="#" target="_blank" class="contact-item">
+                            <div class="contact-icon bg-twitter-soft">
+                                <i class="bi bi-twitter"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-0">Twitter / X</h6>
+                                <p class="small text-muted mb-0">@itklik</p>
+                            </div>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
